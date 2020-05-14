@@ -72,7 +72,7 @@ public class BooleanModelService {
         return this.simpleSearchTime;
     }
 
-    public long calculateBooleanSearchTime(DB db, String query) throws Exception {
+    public long calculateSmartSearchTime(DB db, String query) throws Exception {
         TreeSet<Integer> res;
         /* Query parsing */
         SearchExpression tree = parseQuery(db, query);

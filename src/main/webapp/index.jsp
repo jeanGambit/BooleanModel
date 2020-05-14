@@ -12,7 +12,7 @@
 </head>
 <body>
 <div style="color: aliceblue">
-    <div style="text-align: center">0
+    <div style="text-align: center">
         <h1 style="background-color: black; padding: 15px; display: inline-block">
             Boolean Model Web Application
         </h1><br>
@@ -33,7 +33,7 @@
         <div style="background-color: rgba(0,0,0,0.75); width: 29%; float: left; display: inline-block; padding: 10px; margin: 1%">
             <h2>Small database (100 docs)</h2>
             <h3>Linear Search Time:         <%=request.getAttribute("smallSimpleTime")%> ns</h3>
-            <h3>Inverted Index Search Time: <%=request.getAttribute("smallBooleanTime")%> ns</h3>
+            <h3>Inverted Index Search Time: <%=request.getAttribute("smallSmartTime")%> ns</h3>
             <h3>Coefficient: x<%=request.getAttribute("smallCoeff")%> faster</h3>
             <br>
             <h3>Found <%=request.getAttribute("smallTotal")%> files:</h3>
@@ -50,7 +50,7 @@
         <div style="background-color: rgba(0,0,0,0.75); width: 29%; float: left; display: inline-block; padding: 10px; margin: 1%">
             <h2>Medium database (500 docs)</h2>
             <h3>Linear Search Time:         <%=request.getAttribute("mediumSimpleTime")%> ns</h3>
-            <h3>Inverted Index Search Time: <%=request.getAttribute("mediumBooleanTime")%> ns</h3>
+            <h3>Inverted Index Search Time: <%=request.getAttribute("mediumSmartTime")%> ns</h3>
             <h3>Coefficient: x<%=request.getAttribute("mediumCoeff")%> faster</h3>
             <br>
             <h3>Found <%=request.getAttribute("mediumTotal")%> files:</h3>
@@ -67,7 +67,7 @@
         <div style="background-color: rgba(0,0,0,0.75); width: 29%; float: left; display: inline-block; padding: 10px; margin: 1%">
             <h2>Big database (1000 docs)</h2>
             <h3>Linear Search Time:         <%=request.getAttribute("bigSimpleTime")%> ns</h3>
-            <h3>Inverted Index Search Time: <%=request.getAttribute("bigBooleanTime")%> ns</h3>
+            <h3>Inverted Index Search Time: <%=request.getAttribute("bigSmartTime")%> ns</h3>
             <h3>Coefficient: x<%=request.getAttribute("bigCoeff")%> faster</h3>
             <br>
             <h3>Found <%=request.getAttribute("bigTotal")%> files:</h3>

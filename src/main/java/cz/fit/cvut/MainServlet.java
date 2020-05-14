@@ -21,19 +21,19 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("smallSimpleTime", 0);
-        req.setAttribute("smallBooleanTime", 0);
+        req.setAttribute("smallSmartTime", 0);
         req.setAttribute("smallResult", null);
         req.setAttribute("smallCoeff", 0);
         req.setAttribute("smallTotal", 0);
 
         req.setAttribute("mediumSimpleTime", 0);
-        req.setAttribute("mediumBooleanTime", 0);
+        req.setAttribute("mediumSmartTime", 0);
         req.setAttribute("mediumResult", null);
         req.setAttribute("mediumCoeff", 0);
         req.setAttribute("mediumTotal", 0);
 
         req.setAttribute("bigSimpleTime", 0);
-        req.setAttribute("bigBooleanTime", 0);
+        req.setAttribute("bigSmartTime", 0);
         req.setAttribute("bigResult", null);
         req.setAttribute("bigCoeff", 0);
         req.setAttribute("bigTotal", 0);
@@ -55,10 +55,10 @@ public class MainServlet extends HttpServlet {
 
         service.clearResults();
         long simpleSearchTime = 0;
-        long booleanSearchTime = 0;
+        long smartSearchTime = 0;
         try {
             simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.SMALL, query);
-            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.SMALL, query);
+            smartSearchTime = service.calculateSmartSearchTime(BooleanModelService.DB.SMALL, query);
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("query", "Invalid Input");
@@ -67,19 +67,19 @@ public class MainServlet extends HttpServlet {
         }
         ArrayList<String> result = service.getResult();
 
-        req.setAttribute("smallSimpleTime",  simpleSearchTime);
-        req.setAttribute("smallBooleanTime", booleanSearchTime);
-        req.setAttribute("smallCoeff",    simpleSearchTime / booleanSearchTime);
-        req.setAttribute("smallResult",      result);
-        req.setAttribute("smallTotal",       result.size());
-        System.out.println("DataBase: SmallDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + booleanSearchTime
-                            + ", Coefficient: " + simpleSearchTime/booleanSearchTime + ", Total files: " + result.size());
+        req.setAttribute("smallSimpleTime", simpleSearchTime);
+        req.setAttribute("smallSmartTime",  smartSearchTime);
+        req.setAttribute("smallCoeff",   simpleSearchTime / smartSearchTime);
+        req.setAttribute("smallResult",     result);
+        req.setAttribute("smallTotal",      result.size());
+        System.out.println("DataBase: SmallDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + smartSearchTime
+                            + ", Coefficient: " + simpleSearchTime/smartSearchTime + ", Total files: " + result.size());
         System.out.println("Found files: " + result.toString());
 
         service.clearResults();
         try {
             simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.MEDIUM, query);
-            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.MEDIUM, query);
+            smartSearchTime = service.calculateSmartSearchTime(BooleanModelService.DB.MEDIUM, query);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -87,31 +87,31 @@ public class MainServlet extends HttpServlet {
         result = service.getResult();
 
         req.setAttribute("mediumSimpleTime",  simpleSearchTime);
-        req.setAttribute("mediumBooleanTime", booleanSearchTime);
-        req.setAttribute("mediumCoeff",    simpleSearchTime / booleanSearchTime);
+        req.setAttribute("mediumSmartTime", smartSearchTime);
+        req.setAttribute("mediumCoeff",    simpleSearchTime / smartSearchTime);
         req.setAttribute("mediumResult",      result);
         req.setAttribute("mediumTotal",       result.size());
-        System.out.println("DataBase: MediumDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + booleanSearchTime
-                + ", Coefficient: " + simpleSearchTime/booleanSearchTime + ", Total files: " + result.size());
+        System.out.println("DataBase: MediumDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + smartSearchTime
+                + ", Coefficient: " + simpleSearchTime/smartSearchTime + ", Total files: " + result.size());
         System.out.println("Found files: " + result.toString());
 
 
         service.clearResults();
         try {
             simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.BIG, query);
-            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.BIG, query);
+            smartSearchTime = service.calculateSmartSearchTime(BooleanModelService.DB.BIG, query);
         } catch (Exception e) {
             e.printStackTrace();
         }
         result = service.getResult();
 
         req.setAttribute("bigSimpleTime",  simpleSearchTime);
-        req.setAttribute("bigBooleanTime", booleanSearchTime);
-        req.setAttribute("bigCoeff",    simpleSearchTime / booleanSearchTime);
+        req.setAttribute("bigSmartTime", smartSearchTime);
+        req.setAttribute("bigCoeff",    simpleSearchTime / smartSearchTime);
         req.setAttribute("bigResult",      result);
         req.setAttribute("bigTotal",       result.size());
-        System.out.println("DataBase: BigDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + booleanSearchTime
-                + ", Coefficient: " + simpleSearchTime/booleanSearchTime + ", Total files: " + result.size());
+        System.out.println("DataBase: BigDB, SimpleSearchTime: " + simpleSearchTime + ", SmartSearchTime: " + smartSearchTime
+                + ", Coefficient: " + simpleSearchTime/smartSearchTime + ", Total files: " + result.size());
         System.out.println("Found files: " + result.toString());
 
         req.setAttribute("query", query);
