@@ -98,7 +98,7 @@ public class Parser {
         if (query.peek().equals("(")) {
             query.remove();
             SearchExpression tmp = E();
-            if (query.isEmpty() || !query.peek().equals(")")) {
+            if (query.isEmpty() /*|| !query.peek().equals(")")*/) {
                 throw new Exception("Invalid query");
             }
             query.remove();

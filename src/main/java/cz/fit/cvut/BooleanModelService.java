@@ -60,7 +60,7 @@ public class BooleanModelService {
         System.out.println("Preprocessing is done.");
     }
 
-    public long calculateSimpleSearchTime(DB db, String query) {
+    public long calculateSimpleSearchTime(DB db, String query) throws Exception {
         /* Query parsing */
         SearchExpression tree = parseQuery(db, query);
 
@@ -72,7 +72,7 @@ public class BooleanModelService {
         return this.simpleSearchTime;
     }
 
-    public long calculateBooleanSearchTime(DB db, String query) {
+    public long calculateBooleanSearchTime(DB db, String query) throws Exception {
         TreeSet<Integer> res;
         /* Query parsing */
         SearchExpression tree = parseQuery(db, query);
@@ -99,7 +99,7 @@ public class BooleanModelService {
         this.result = new ArrayList<>();
     }
 
-    private SearchExpression parseQuery(DB db, String query) {
+    private SearchExpression parseQuery(DB db, String query) throws Exception {
         SearchExpression tmp = null;
         try {
             switch (db) {
@@ -118,6 +118,7 @@ public class BooleanModelService {
         } catch (Exception ex) {
             System.out.println("Couldn't pars query");
             ex.printStackTrace();
+            throw new Exception("Invalid query: " + query);
         }
         return tmp;
     }

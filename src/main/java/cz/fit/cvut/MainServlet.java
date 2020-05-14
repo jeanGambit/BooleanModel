@@ -54,8 +54,17 @@ public class MainServlet extends HttpServlet {
         System.out.println("Query: [" + query + "]");
 
         service.clearResults();
-        long simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.SMALL, query);
-        long booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.SMALL, query);
+        long simpleSearchTime = 0;
+        long booleanSearchTime = 0;
+        try {
+            simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.SMALL, query);
+            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.SMALL, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("query", "Invalid Input");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+            dispatcher.forward(req, resp);
+        }
         ArrayList<String> result = service.getResult();
 
         req.setAttribute("smallSimpleTime",  simpleSearchTime);
@@ -68,8 +77,13 @@ public class MainServlet extends HttpServlet {
         System.out.println("Found files: " + result.toString());
 
         service.clearResults();
-        simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.MEDIUM, query);
-        booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.MEDIUM, query);
+        try {
+            simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.MEDIUM, query);
+            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.MEDIUM, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
         result = service.getResult();
 
         req.setAttribute("mediumSimpleTime",  simpleSearchTime);
@@ -83,8 +97,12 @@ public class MainServlet extends HttpServlet {
 
 
         service.clearResults();
-        simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.BIG, query);
-        booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.BIG, query);
+        try {
+            simpleSearchTime = service.calculateSimpleSearchTime(BooleanModelService.DB.BIG, query);
+            booleanSearchTime = service.calculateBooleanSearchTime(BooleanModelService.DB.BIG, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         result = service.getResult();
 
         req.setAttribute("bigSimpleTime",  simpleSearchTime);

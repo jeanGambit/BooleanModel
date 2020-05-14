@@ -12,7 +12,7 @@
 </head>
 <body>
 <div style="color: aliceblue">
-    <div style="text-align: center">
+    <div style="text-align: center">0
         <h1 style="background-color: black; padding: 15px; display: inline-block">
             Boolean Model Web Application
         </h1><br>
